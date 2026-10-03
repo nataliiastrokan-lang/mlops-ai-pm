@@ -22,7 +22,7 @@ Risk probability is rated as **Low / Medium / High**. Impact describes the poten
 
 ## Priority Risks
 
-The following risks require particular attention before staging assessment because of their potential impact:
+The following risks require particular attention before staging promotion because of their potential impact:
 
 1. **Remaining High-severity security findings** — the slim image still contains three High-severity findings that must be reviewed and either remediated or formally accepted before staging promotion.
 2. **Inference inconsistency between fat and slim images** — current comparison shows the same top-3 result, but inference consistency must remain part of regression validation for future image changes.
