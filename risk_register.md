@@ -18,20 +18,22 @@ Risk probability is rated as **Low / Medium / High**. Impact describes the poten
 | Local Compose environment connects to production PostgreSQL, Redis, queue, or another production dependency | Low         | High — test activity could affect production data or services                                                     | Use isolated local/test services and environment-specific configuration; verify connection settings before running Compose               | DevOps                  |
 | Model artifact version or source is not documented                                                          | Medium      | High — inference results may not be reproducible and the team may be unable to identify which model was delivered | Record model artifact version/source and ensure both images use the same `model/model.pt`                                                | AI/ML Engineer          |
 | Slim image remains too large or contains unnecessary runtime dependencies                                   | Medium      | Medium — slower transfer/deployment and reduced benefit from optimization                                         | Use `python:3.13-slim`, multi-stage build, review installed dependencies and runtime contents, and compare image size with the fat image | DevOps + AI/ML Engineer |
+| High-severity vulnerabilities remain in the slim container image                                            | Medium      | High — known vulnerabilities may create a security exposure if the image is promoted without review               | Review the 3 remaining High-severity findings; remediate them or document formal risk acceptance before staging promotion                | DevOps + Security       |
 
 ## Priority Risks
 
 The following risks require particular attention before staging assessment because of their potential impact:
 
-1. **Inference inconsistency between fat and slim images** — optimization must not change model behavior.
-2. **Python/dependency incompatibility** — failure may prevent successful build or inference execution.
-3. **Exposure of production secrets or connections to production services** — local testing must remain isolated from production.
-4. **Missing model artifact versioning** — without a traceable model artifact, inference cannot be reliably reproduced.
+1. **Remaining High-severity security findings** — the slim image still contains three High-severity findings that must be reviewed and either remediated or formally accepted before staging promotion.
+2. **Inference inconsistency between fat and slim images** — current comparison shows the same top-3 result, but inference consistency must remain part of regression validation for future image changes.
+3. **Python/dependency incompatibility** — dependency changes may affect future builds or runtime behavior and should remain controlled through version pinning and validation.
+4. **Exposure of production secrets or connections to production services** — local testing must remain isolated from production.
+5. **Missing model artifact versioning** — without a traceable model artifact, inference cannot be reliably reproduced.
 
 ## AI PM Review Approach
 
-The AI PM should review this register together with the evidence collected through the Docker image review, optimization report review, and Compose readiness checklist.
+The optimization review provides evidence that the slim image delivers measurable improvement while preserving the expected top-3 inference result. The image size decreased by approximately 40%, unnecessary runtime content was removed, and the security profile improved compared with the fat image.
 
-Risks should not be considered mitigated solely because a mitigation action is documented. Closure requires relevant evidence, such as successful build and inference results, configuration review, documented model version, or independent reproduction of the documented process.
+However, three High-severity security findings remain open. Therefore, the current recommendation is Conditional Go: the solution may proceed toward staging only after these findings are reviewed and either remediated or formally accepted.
 
-Any unresolved High-impact risk should be explicitly reviewed before recommending the solution for staging.
+Risk closure requires supporting evidence rather than documentation of mitigation actions alone. Any unresolved High-impact risk must be explicitly reviewed before staging promotion.
