@@ -197,67 +197,6 @@ All financial impacts in the threat register are planning estimates for the hypo
 
 The Security & Compliance Lead owns the consolidated risk register. Technical owners are responsible for implementing and validating their assigned mitigations.
 
-
-## 6. Risk Scoring Methodology
-
-PayGuard AI uses a 3×3 risk assessment matrix to evaluate security, operational, compliance, and AI-specific threats.
-
-Each threat receives an **Impact** score and a **Likelihood** score on a scale of 1–3.
-
-**Risk Score = Impact × Likelihood**
-
-### 6.1 Impact Assessment
-
-| Score | Level | Definition |
-|---|---|---|
-| 1 | Low | Limited operational disruption, minor quality degradation, or negligible financial impact |
-| 2 | Medium | Measurable service degradation, increased manual review costs, or a contained security incident |
-| 3 | High | Significant financial loss, sensitive data exposure, regulatory consequences, or disruption of critical payment risk operations |
-
-### 6.2 Likelihood Assessment
-
-| Score | Level | Definition |
-|---|---|---|
-| 1 | Unlikely | Requires uncommon conditions or multiple control failures |
-| 2 | Possible | Credible scenario that could occur under normal operating conditions |
-| 3 | Likely | High exposure or a recurring failure pattern without additional controls |
-
-### 6.3 Risk Priority Matrix
-
-| Impact \ Likelihood | 1 — Unlikely | 2 — Possible | 3 — Likely |
-|---|---|---|---|
-| **3 — High** | P2 (3) | P1 (6) | P1 (9) |
-| **2 — Medium** | P3 (2) | P2 (4) | P1 (6) |
-| **1 — Low** | P3 (1) | P3 (2) | P3 (3) |
-
-### 6.4 Priority and Escalation Rules
-
-| Priority | Risk Scores | Required Response |
-|---|---|---|
-| P1 — Critical | 6–9 | Immediate mitigation planning, accountable owner, and Security & Compliance escalation; unresolved P1 risks block production approval |
-| P2 — High | 3–4, where Impact = 3 or score = 4 | Documented mitigation plan, assigned owner, and validation before production or formal risk acceptance |
-| P3 — Moderate/Low | 1–3, excluding Impact = 3 | Track through standard risk management and periodic review |
-
-Risk priorities represent the **initial risk level before mitigation**. Residual risks must be reassessed after controls are implemented and validated.
-
-### 6.5 Risk Register Requirements
-
-Each identified threat must include:
-
-- Threat ID and category.
-- Threat scenario and affected asset.
-- Impact and likelihood scores.
-- Risk priority.
-- Potential business or compliance impact.
-- Proposed mitigation and detection controls.
-- Accountable owner.
-- Mitigation status.
-
-All financial impacts in the threat register are planning estimates for the hypothetical PayGuard AI business, not historical incident losses.
-
-The Security & Compliance Lead owns the consolidated risk register. Technical owners are responsible for implementing and validating their assigned mitigations.
-
-
 ## 7. Threat Register
 
 The register identifies initial risks before mitigation. Priorities are calculated using the Impact × Likelihood methodology defined in Section 6.
