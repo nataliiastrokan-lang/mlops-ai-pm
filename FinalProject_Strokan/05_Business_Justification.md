@@ -447,3 +447,71 @@ The financial outcome is particularly sensitive to:
 - Model accuracy and fraud detection performance.
 
 Before expanding production capacity, PayGuard AI should validate these assumptions through measured pilot results, cloud cost reports, and analyst productivity data.
+
+
+## 7. Financial Risks and Investment Recommendation
+
+### 7.1 Key Financial Risks
+
+| Risk | Potential Impact | Mitigation | Owner |
+|---|---|---|---|
+| Lower-than-expected operational savings | Negative ROI and extended payback period | Validate FPR improvement, review volume, and handling cost through a controlled pilot | Nataliia Strokan |
+| Higher LLM API consumption | Increased cost per investigation and budget overruns | Token budgets, context optimization, usage monitoring, and provider cost reviews | Marcus Lee |
+| Infrastructure cost escalation | Reduced operating margin and potential budget breach | Capacity testing, AWS cost alerts, resource right-sizing, and quarterly forecasts | Alex Morgan |
+| Insufficient analyst adoption | Lower productivity gains despite platform expenditure | Analyst UAT, training, adoption monitoring, and workflow improvements | Rachel Adams |
+| Model-quality degradation | Increased manual reviews or fraud-related losses | Continuous evaluation, drift monitoring, Canary deployment, and rollback controls | Marcus Lee |
+| Security or compliance incident | Remediation costs, contractual exposure, and potential regulatory consequences | Validate P1 mitigations, tenant isolation, data protection, and incident readiness | Emma Wilson |
+
+### 7.2 Investment Recommendation
+
+**Recommendation: Conditional Go for a controlled pilot; No-Go for unrestricted production-scale investment at this stage.**
+
+The base-case financial model projects:
+
+- Three-year TCO of **$3.82 million**.
+- Three-year gross operational benefits of **$3.63 million**.
+- Three-year net financial benefit of **−$190,000**.
+- Three-year ROI of approximately **−5.0%**.
+- Positive monthly operating contribution of **$10,000** after target-state performance is achieved.
+
+The investment demonstrates potential operational value but does not achieve positive cumulative ROI within the three-year planning horizon under current assumptions.
+
+A controlled pilot is recommended to validate model performance, analyst productivity, LLM usage costs, and operational savings before committing to full-scale deployment.
+
+This recommendation is a business investment decision, not production release authorization. Any pilot involving production data or customer workflows must first satisfy applicable security, compliance, and release-readiness requirements.
+
+### 7.3 Investment Decision Gates
+
+| Gate | Required Evidence | Decision Owner |
+|---|---|---|
+| Gate 1 — Pilot Authorization | Approved scope, capped budget, success metrics, security controls, and accountable owners | Olivia Bennett |
+| Gate 2 — Technical and Security Readiness | Validated critical controls, model evaluations, tenant isolation, monitoring, and rollback readiness | Emma Wilson / Daniel Carter |
+| Gate 3 — Business Value Validation | Measured changes in FPR, manual review volume, handling cost, analyst adoption, and fraud detection effectiveness | Nataliia Strokan |
+| Gate 4 — Financial Reassessment | Updated TCO, actual unit costs, benefit realization, ROI, and sensitivity scenarios | Nataliia Strokan / Olivia Bennett |
+| Gate 5 — Production Expansion | Positive investment justification, approved residual risks, and completed production Go/No-Go checklist | Olivia Bennett |
+
+The pilot must have predefined success criteria and a spending limit. Expansion should be deferred if critical safety controls fail, fraud detection effectiveness deteriorates, or projected benefits remain insufficient to justify recurring costs.
+
+### 7.4 Proposed Financial Success Criteria
+
+The following criteria are proposed for evaluation and require approval before the pilot begins:
+
+- Demonstrate measurable FPR improvement toward the six-month target of ≤5.0%.
+- Maintain approved fraud detection recall and precision guardrails.
+- Validate the feasibility of reducing manual reviews from 100,000 to ≤70,000 per month.
+- Demonstrate a credible path toward reducing average review cost from $2.50 to ≤$2.00.
+- Measure actual LLM API cost per assisted investigation against the modeled $0.17.
+- Confirm that projected monthly recurring operating costs remain within the $140,000 budget ceiling.
+- Update the investment case using measured benefits and costs rather than planning assumptions alone.
+
+### 7.5 Final Business Conclusion
+
+PayGuard AI addresses a material operational challenge in payment risk management: increasing false positives, higher manual review costs, and the need for reliable compliance guidance.
+
+The proposed hybrid AI architecture offers opportunities to improve risk-scoring efficiency and analyst productivity while maintaining human oversight.
+
+However, the financial model shows that operational savings alone are insufficient to deliver a positive three-year ROI under the base-case assumptions.
+
+**The recommended decision is to authorize a limited, controlled validation phase, subject to approved funding and mandatory security controls, and reassess full-scale investment based on demonstrated business value.**
+
+The Senior AI Product Manager is accountable for consolidating the pilot results and presenting the updated investment recommendation to the CPO.
