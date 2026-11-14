@@ -266,3 +266,100 @@ Within two business days of stabilization, initiate a post-incident review cover
 - Required changes to prompts, retrieval configuration, security tests, or document governance.
 
 Assign corrective actions with owners and deadlines. Repeat relevant adversarial and tenant-isolation tests before the next production release.
+
+
+## 7. Scenario 3 — Deployment or Infrastructure Failure
+
+**Related Threats:** T05 (CI/CD Compromise), T07 (ML Inference Outage), T10 (Backup or Recovery Failure), T11 (Monitoring Gaps), T17 (LLM Provider Outage)  
+**Default Severity:** SEV-2; escalate to SEV-1 for widespread risk-scoring disruption, confirmed deployment compromise, or critical service unavailability.  
+**Incident Owner:** Alex Morgan, MLOps Engineer  
+**Technical Support:** Daniel Carter, Engineering Lead  
+**Expected Frequency:** Occasional deployment failures; major infrastructure outages considered exceptional.  
+**Target MTTR:** ≤4 hours for SEV-2; ≤60 minutes for SEV-1 service restoration or containment.
+
+### 7.1 Detection and Triggers
+
+Potential detection signals include:
+
+- Canary deployment exceeds approved error-rate or latency thresholds.
+- Argo CD reports `OutOfSync`, `Degraded`, or failed synchronization.
+- EKS pods repeatedly restart, become unavailable, or fail readiness checks.
+- Production inference endpoints experience elevated errors or reduced availability.
+- Infrastructure capacity, networking, or dependent services fail.
+- External LLM API becomes unavailable or exceeds acceptable response times.
+
+An Argo CD `OutOfSync` status indicates a difference between desired and actual configuration; it does not automatically indicate a production incident.
+
+### 7.2 First 15 Minutes
+
+1. Acknowledge the alert and classify incident severity.
+2. Identify affected services, environments, customer segments, and recent deployments.
+3. Pause Canary promotion and suspend further production changes.
+4. Review Argo CD application health, synchronization status, and recent GitLab CI executions.
+5. Check EKS pod health, infrastructure metrics, API availability, and error logs.
+6. Trigger automated rollback for confirmed technical guardrail violations or initiate controlled manual rollback.
+7. Notify the Engineering Lead, Senior AI Product Manager, and relevant operational responders.
+8. Activate fallback procedures if the external LLM provider or Copilot is unavailable.
+
+### 7.3 Diagnosis
+
+The MLOps Engineer and Engineering Lead investigate:
+
+- Deployment configuration differences between approved Git state and production.
+- Container image versions, application logs, and recent pipeline changes.
+- EKS resource exhaustion, autoscaling behavior, and network connectivity.
+- Failed health checks, dependency errors, or unavailable infrastructure components.
+- External LLM provider status and API failure patterns.
+- Possible unauthorized deployment changes or compromised credentials.
+
+For suspected unauthorized changes, preserve evidence and involve Security & Compliance before modifying affected systems beyond necessary containment.
+
+### 7.4 Containment and Mitigation
+
+- Stop Canary rollout and prevent further traffic expansion.
+- Restore the last approved application and model deployment configuration.
+- Use GitLab CI and Argo CD to reconcile production with the approved rollback revision.
+- Scale or restart affected workloads when appropriate and safe.
+- Restore service dependencies or activate approved recovery procedures.
+- Disable Copilot functionality and use the manual analyst workflow during an external LLM provider outage.
+- Escalate infrastructure failures to the relevant cloud or service provider when necessary.
+
+Do not enable uncontrolled Argo CD self-healing or pruning in production as an emergency workaround. Production changes must follow approved GitOps and incident procedures.
+
+### 7.5 Recovery Validation
+
+Recovery is confirmed when:
+
+- Argo CD reports the approved deployment configuration as synchronized and healthy.
+- EKS workloads pass readiness and availability checks.
+- API error rates, p95/p99 latency, and throughput meet operational SLOs.
+- The approved ML model version is serving production traffic.
+- Critical security and tenant-isolation controls remain effective.
+- Customer Operations confirms that analyst workflows are functioning.
+
+The Engineering Lead confirms application recovery, and the Incident Commander approves operational stabilization.
+
+### 7.6 Communication and Escalation
+
+The Senior AI Product Manager communicates:
+
+- Affected services and estimated customer impact.
+- Whether risk scoring or only Copilot functionality is affected.
+- Current mitigation and rollback status.
+- Expected restoration timeline and business continuity measures.
+
+For SEV-1 incidents, notify the CPO immediately and provide updates every 15–30 minutes.
+
+Customer Operations coordinates external customer updates when service availability or customer workflows are affected.
+
+### 7.7 Post-Incident Review and Prevention
+
+Within two business days of stabilization, conduct a post-incident review covering:
+
+- Root cause and contributing deployment or infrastructure changes.
+- Detection, escalation, rollback, and recovery timelines.
+- Customer impact and service availability.
+- Effectiveness of Canary guardrails, GitOps controls, and monitoring.
+- Corrective actions, responsible owners, and deadlines.
+
+Preventive improvements may include stronger pipeline validation, improved capacity planning, more reliable rollback testing, and enhanced monitoring coverage.
