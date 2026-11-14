@@ -252,3 +252,106 @@ Potential optimization opportunities include:
 - Tracking the relationship between Copilot adoption, investigation handling time, and operational savings.
 
 Unit economics should be reassessed monthly after launch using actual infrastructure utilization, API billing, and investigation activity.
+
+
+## 5. Business Benefits, ROI, and Break-Even Analysis
+
+### 5.1 Expected Operational Benefits
+
+PayGuard AI aims to reduce manual review workload through improved ML risk classification and increase analyst efficiency through the LLM/RAG Copilot.
+
+The target-state financial benefit is based on:
+
+| Metric | Baseline | Target State |
+|---|---:|---:|
+| Monthly manual reviews | 100,000 | 70,000 |
+| Average review cost | $2.50 | $2.00 |
+| Monthly manual review expenditure | $250,000 | $140,000 |
+| Monthly gross savings | — | $110,000 |
+| Annualized gross savings | — | $1,320,000 |
+
+These savings assume that reduced review volume and handling effort translate into actual avoided expenditure or productive capacity that can be financially realized.
+
+Potential improvements in fraud losses, customer retention, and compliance outcomes are excluded from quantified benefits because supporting estimates are not available.
+
+### 5.2 Benefit Realization Assumptions
+
+The model assumes benefits increase linearly during the first six months, reaching the target monthly savings of $110,000 at the end of Month 6.
+
+For simplicity, the average benefit during the first six months is assumed to be 50% of the target-state monthly savings.
+
+**Year 1 gross benefits:**
+
+- Months 1–6: 6 × $55,000 = $330,000
+- Months 7–12: 6 × $110,000 = $660,000
+- **Year 1 total: $990,000**
+
+Years 2 and 3 assume sustained target-state savings of $1,320,000 annually.
+
+This is a simplified planning model; actual benefit realization may be nonlinear and depends on adoption, model performance, and operational implementation.
+
+### 5.3 Three-Year Financial Projection
+
+| Financial Metric | Year 1 | Year 2 | Year 3 | Total |
+|---|---:|---:|---:|---:|
+| Gross operational benefits | $990,000 | $1,320,000 | $1,320,000 | $3,630,000 |
+| Recurring operating costs | $1,200,000 | $1,200,000 | $1,200,000 | $3,600,000 |
+| One-time implementation costs | $220,000 | $0 | $0 | $220,000 |
+| **Net financial benefit** | **-$430,000** | **$120,000** | **$120,000** | **-$190,000** |
+
+**Three-year net financial benefit = $3,630,000 − $3,820,000 = -$190,000**
+
+### 5.4 Return on Investment
+
+ROI is calculated as:
+
+**ROI = (Total Benefits − Total Costs) / Total Costs × 100%**
+
+For the three-year planning horizon:
+
+**ROI = ($3,630,000 − $3,820,000) / $3,820,000 × 100%**
+
+**Three-year ROI ≈ -5.0%**
+
+The base-case financial model does not achieve a positive three-year ROI from manual review savings alone.
+
+However, the platform approaches operating break-even after reaching target-state performance.
+
+### 5.5 Operating Break-Even
+
+At target-state performance:
+
+- Monthly gross operational savings: $110,000
+- Monthly recurring operating costs: $100,000
+- **Monthly operating contribution: +$10,000**
+
+The platform reaches monthly operating break-even when realized savings equal or exceed $100,000.
+
+Under the linear six-month ramp-up assumption, monthly savings reach $100,000 near Month 5.5.
+
+This represents operating break-even, not recovery of the initial investment.
+
+### 5.6 Cumulative Investment Break-Even
+
+The initial implementation cost and early operating losses create a cumulative deficit.
+
+At the end of Year 3, the model projects a cumulative deficit of $190,000.
+
+With a sustained positive operating contribution of $10,000 per month, an additional 19 months would be required to recover that deficit.
+
+**Illustrative cumulative break-even: approximately Month 55.**
+
+This estimate assumes stable costs and benefits beyond the three-year planning horizon. It excludes discounting, inflation, and future reinvestment.
+
+### 5.7 Financial Interpretation
+
+The proposed investment generates measurable operational improvements but does not fully recover its costs within three years under the base-case assumptions.
+
+A positive investment decision would therefore require one or more of the following:
+
+- Lower recurring platform costs through infrastructure and LLM optimization.
+- Additional validated benefits from fraud-loss prevention or customer retention.
+- Higher operational savings supported by actual pilot results.
+- A longer investment horizon justified by strategic or compliance value.
+
+The recommended approach is to proceed through controlled validation rather than commit to unrestricted production-scale expenditure before the expected benefits are demonstrated.
