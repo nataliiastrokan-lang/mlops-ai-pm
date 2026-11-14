@@ -61,8 +61,6 @@ The platform supports payment service providers, fintech companies, marketplaces
 - Apply GDPR-related data protection controls where applicable.
 - Require human oversight for final risk decisions.
 
-# Architectural Decision Records — PayGuard AI
-
 ## ADR-001: Hybrid Model Hosting Strategy
 
 **Status:** Proposed  
