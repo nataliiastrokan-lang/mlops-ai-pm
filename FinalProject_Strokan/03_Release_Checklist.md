@@ -52,3 +52,23 @@ The checklist contains 40 controls grouped into eight categories. Each control r
 
 All controls are initially marked **Not Verified** because this is a hypothetical project and no production validation evidence has been supplied.
 
+
+### 3.1 Infrastructure Readiness
+
+| ID | Readiness Check | Acceptance Criteria | Owner | Status |
+|---|---|---|---|---|
+| RC-01 | Production EKS environment | Production cluster is isolated from non-production; namespaces, resource quotas, and network policies are verified | Daniel Carter | Not Verified |
+| RC-02 | Infrastructure as Code | Terraform configuration is reviewed, version-controlled, and successfully validated against the production environment | Alex Morgan | Not Verified |
+| RC-03 | Capacity and autoscaling | Load tests confirm capacity for the expected transaction volume; autoscaling responds correctly to traffic spikes | Daniel Carter | Not Verified |
+| RC-04 | Availability and recovery | Critical services meet approved availability targets; backup restoration and recovery procedures are successfully tested | Alex Morgan | Not Verified |
+| RC-05 | Secrets and configuration | Production secrets are stored in an approved secrets manager; no credentials are exposed in source code or deployment manifests | Emma Wilson | Not Verified |
+
+### 3.2 Security and Compliance Readiness
+
+| ID | Readiness Check | Acceptance Criteria | Owner | Status |
+|---|---|---|---|---|
+| RC-06 | IAM and RBAC | Least-privilege access is verified for AWS, EKS, MLflow, GitLab CI, and Argo CD; privileged access is reviewed | Emma Wilson | Not Verified |
+| RC-07 | Tenant isolation | Automated tests confirm that API and RAG requests cannot access another tenant's data | Emma Wilson | Not Verified |
+| RC-08 | Data protection | Encryption, retention, log redaction, and sensitive-data filtering controls pass security validation | Emma Wilson | Not Verified |
+| RC-09 | External LLM provider assessment | Security, privacy, contractual data processing, and applicable EU/US residency requirements are reviewed and approved | Emma Wilson | Not Verified |
+| RC-10 | Critical threat mitigation | All 10 P1 threats in the Threat Model have implemented and validated controls; no unresolved P1 risk remains | Emma Wilson | Not Verified |
