@@ -207,3 +207,78 @@ The AI Product Manager coordinates the final Go/No-Go decision based on release 
 
 Review the strategy after major incidents or when production traffic and infrastructure requirements change.
 
+
+---
+
+## ADR-003: Model Registry Strategy
+
+**Status:** Proposed  
+**Decision Owner:** Marcus Lee, ML/AI Lead  
+**Consulted:** Alex Morgan (MLOps Engineer), Daniel Carter (Engineering Lead), Emma Wilson (Security & Compliance Lead)
+
+### Context and Problem
+
+PayGuard AI requires reliable tracking, versioning, and governance of classical ML models used for payment risk scoring.
+
+Each production model must be traceable to its training run, parameters, evaluation metrics, and approved artifacts. This is essential for controlled releases, rollback, auditability, and investigation of model-quality incidents.
+
+The registry must integrate with the existing AWS EKS, GitLab CI, and Argo CD architecture while supporting regulated B2B operations.
+
+### Alternatives Considered
+
+| Option | Advantages | Disadvantages |
+|---|---|---|
+| A. Self-hosted MLflow | Open-source flexibility; experiment tracking and model registry in one platform; integration with existing MLOps workflows | Requires infrastructure maintenance, access controls, backups, and availability management |
+| B. Amazon SageMaker Model Registry | Managed AWS integration; model versioning and approval workflows; reduced registry maintenance | Additional service dependency and potentially higher platform costs |
+| C. Combined MLflow + SageMaker | MLflow experimentation with AWS-managed registry governance | Duplicate metadata, additional integrations, and increased operational complexity |
+
+### Decision
+
+**Select Option A: Self-hosted MLflow as the primary model registry.**
+
+- Use MLflow Tracking to record training runs, parameters, metrics, and artifacts.
+- Register validated classical ML model versions in MLflow Model Registry.
+- Maintain explicit model lifecycle states: candidate, staging-approved, production-approved, and archived.
+- Require documented evaluation evidence and approval before production promotion.
+- Store model artifacts in controlled AWS storage with encryption and restricted access.
+- Integrate approved model versions with GitLab CI and Argo CD deployment workflows.
+- Retain previous validated model versions for rollback and audit purposes.
+
+LLM provider model identifiers, prompt versions, retrieval configuration, and evaluation results will be tracked separately as versioned application configuration and release evidence.
+
+### Rationale
+
+MLflow provides the experiment tracking and model governance capabilities required for PayGuard AI without introducing a second model management platform.
+
+It also builds on the MLOps processes already established during earlier project work, reducing implementation complexity and supporting consistent model evaluation.
+
+The selected approach prioritizes traceability, controlled production promotion, and operational cost management.
+
+### Consequences and Risks
+
+**Positive:**
+- Centralized experiment tracking and model versioning.
+- Traceability between training results, approved models, and production deployments.
+- Reduced platform complexity compared with maintaining two registries.
+
+**Negative / Risks:**
+- PayGuard AI is responsible for MLflow availability, upgrades, and backups.
+- Misconfigured registry permissions could allow unauthorized model changes.
+- Registry metadata and deployed model versions could become inconsistent.
+
+**Required Mitigations:**
+- Enforce least-privilege access using IAM and role-based permissions.
+- Protect artifact storage through encryption and access restrictions.
+- Maintain backups and recovery procedures for registry metadata and artifacts.
+- Require CI validation and authorized approval for production model promotion.
+- Monitor registry availability and verify deployed model versions against approved release records.
+
+### Validation and Review
+
+**Owners:** ML/AI Lead and MLOps Engineer.
+
+Validate model registration, approval controls, artifact integrity, version traceability, and rollback procedures before production release.
+
+Security & Compliance must approve registry access controls and auditability.
+
+Reassess the registry strategy if operational overhead, reliability, or regulatory requirements exceed the capabilities of the selected approach.
