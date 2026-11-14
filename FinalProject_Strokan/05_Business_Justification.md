@@ -355,3 +355,95 @@ A positive investment decision would therefore require one or more of the follow
 - A longer investment horizon justified by strategic or compliance value.
 
 The recommended approach is to proceed through controlled validation rather than commit to unrestricted production-scale expenditure before the expected benefits are demonstrated.
+
+
+## 6. Sensitivity Analysis
+
+### 6.1 Scenario Assumptions
+
+The sensitivity analysis evaluates how changes in transaction volume affect PayGuard AI's operating costs and expected benefits.
+
+Three scenarios are considered:
+
+- **Low Volume (0.5×):** 17.5 million payment events per month.
+- **Base Case (1×):** 35 million payment events per month.
+- **High Volume (2×):** 70 million payment events per month.
+
+The model assumes that transaction volume, manual review volume, and LLM-assisted investigations change proportionally.
+
+For simplicity, the percentage reduction in manual review costs remains constant across scenarios.
+
+This assumption must be validated because transaction risk distributions, customer behavior, and analyst workload may not scale linearly.
+
+### 6.2 Cost Scaling Assumptions
+
+The $100,000 monthly operating cost is divided into fixed and variable components.
+
+| Cost Category | Base Monthly Cost | Scaling Assumption |
+|---|---:|---|
+| AWS compute and EKS | $18,000 | 70% variable, 30% fixed |
+| Storage and OpenSearch | $7,000 | 60% variable, 40% fixed |
+| Networking and data transfer | $3,000 | 100% variable |
+| Commercial LLM API | $12,000 | 100% variable |
+| Monitoring and tooling | $5,000 | 40% variable, 60% fixed |
+| Engineering, ML, and MLOps personnel | $45,000 | Fixed within modeled capacity |
+| Security, compliance, and operational support | $10,000 | Fixed within modeled capacity |
+
+**Total fixed monthly cost: $62,600**
+
+**Total variable monthly cost at base volume: $37,400**
+
+The model assumes existing staffing and infrastructure can support the modeled range without major redesign. Capacity limits would require additional investment.
+
+### 6.3 Monthly Scenario Comparison
+
+| Metric | Low (0.5×) | Base (1×) | High (2×) |
+|---|---:|---:|---:|
+| Payment events | 17.5M | 35M | 70M |
+| Scored transactions | 5M | 10M | 20M |
+| LLM-assisted investigations | 35,000 | 70,000 | 140,000 |
+| Gross operational savings | $55,000 | $110,000 | $220,000 |
+| Fixed operating costs | $62,600 | $62,600 | $62,600 |
+| Variable operating costs | $18,700 | $37,400 | $74,800 |
+| **Total monthly operating costs** | **$81,300** | **$100,000** | **$137,400** |
+| **Monthly operating contribution** | **-$26,300** | **+$10,000** | **+$82,600** |
+
+The high-volume scenario remains below the assumed $140,000 monthly MLOps budget ceiling, but with limited headroom.
+
+### 6.4 Three-Year Scenario Comparison
+
+The model applies the same six-month benefit ramp-up as the base case and assumes constant operating costs within each scenario.
+
+One-time implementation expenditure remains $220,000.
+
+| Metric | Low (0.5×) | Base (1×) | High (2×) |
+|---|---:|---:|---:|
+| Three-year gross benefits | $1,815,000 | $3,630,000 | $7,260,000 |
+| Three-year recurring costs | $2,926,800 | $3,600,000 | $4,946,400 |
+| One-time implementation | $220,000 | $220,000 | $220,000 |
+| **Three-year TCO** | **$3,146,800** | **$3,820,000** | **$5,166,400** |
+| **Three-year net benefit** | **-$1,331,800** | **-$190,000** | **+$2,093,600** |
+| **Three-year ROI** | **-42.3%** | **-5.0%** | **+40.5%** |
+
+### 6.5 Interpretation
+
+**Low-volume scenario:** The platform does not achieve operating break-even. Fixed costs remain significant relative to the reduced benefits.
+
+**Base scenario:** The platform achieves positive monthly operating contribution after reaching target-state performance but does not recover its initial investment within three years.
+
+**High-volume scenario:** The platform generates positive three-year ROI because benefits scale faster than the modeled operating costs.
+
+However, this scenario depends on maintaining service quality, infrastructure capacity, and the same operational savings per transaction at twice the baseline volume.
+
+### 6.6 Sensitivity Risks
+
+The financial outcome is particularly sensitive to:
+
+- Actual transaction and investigation volumes.
+- Realized reduction in manual reviews and handling costs.
+- LLM token consumption per investigation.
+- Additional infrastructure requirements at higher volumes.
+- Staffing increases required to maintain service quality.
+- Model accuracy and fraud detection performance.
+
+Before expanding production capacity, PayGuard AI should validate these assumptions through measured pilot results, cloud cost reports, and analyst productivity data.
