@@ -282,3 +282,77 @@ Validate model registration, approval controls, artifact integrity, version trac
 Security & Compliance must approve registry access controls and auditability.
 
 Reassess the registry strategy if operational overhead, reliability, or regulatory requirements exceed the capabilities of the selected approach.
+
+
+---
+
+## ADR-004: RAG Storage Strategy and Tenant Isolation
+
+**Status:** Proposed  
+**Decision Owner:** Daniel Carter, Engineering Lead  
+**Consulted:** Marcus Lee (ML/AI Lead), Alex Morgan (MLOps Engineer), Emma Wilson (Security & Compliance Lead)
+
+### Context and Problem
+
+PayGuard AI's LLM/RAG Copilot helps payment risk analysts investigate suspicious transactions by retrieving relevant PSP procedures, compliance policies, and historical case information.
+
+The platform serves 350 B2B clients across EU and US markets. The retrieval system must prevent unauthorized access to customer-specific information while providing accurate, up-to-date context for LLM-generated recommendations.
+
+A cross-tenant data leak could expose sensitive financial information, create regulatory consequences, and damage customer trust.
+
+### Alternatives Considered
+
+| Option | Advantages | Disadvantages |
+|---|---|---|
+| A. Pinecone | Managed vector database; fast implementation; scalable retrieval | External vendor dependency; additional data residency and cost considerations |
+| B. PostgreSQL with pgvector | Familiar relational database; flexible metadata filtering; potentially lower cost at moderate scale | Requires database tuning and capacity management as vector workloads grow |
+| C. Amazon OpenSearch Service | AWS integration; vector and keyword search; metadata filtering and access controls | Operational configuration complexity; infrastructure costs must be monitored |
+
+### Decision
+
+**Select Option C: Amazon OpenSearch Service with vector search capabilities.**
+
+- Store approved policy documents, PSP procedures, and authorized case knowledge in a controlled retrieval index.
+- Associate documents and retrieval requests with tenant identifiers and access permissions.
+- Enforce tenant authorization in the backend before retrieval; do not rely on LLM instructions or metadata filtering alone.
+- Apply document versioning and validity checks to prevent outdated policies from being presented as current.
+- Return source references with retrieved content to support evidence-based analyst review.
+- Apply data minimization and sensitive information filtering before passing retrieved context to the commercial LLM API.
+- Maintain audit logs of retrieval requests, access decisions, and document versions.
+
+### Rationale
+
+Amazon OpenSearch Service supports the combination of semantic and keyword retrieval needed for compliance documentation and investigation workflows.
+
+Its integration with the existing AWS environment simplifies infrastructure governance and supports consistent security monitoring.
+
+The selected approach prioritizes retrieval accuracy, document traceability, and tenant isolation over minimizing infrastructure complexity.
+
+### Consequences and Risks
+
+**Positive:**
+- Centralized retrieval of relevant operational and compliance knowledge.
+- Support for hybrid semantic and keyword search.
+- Integration with AWS security and monitoring controls.
+
+**Negative / Risks:**
+- Additional infrastructure and operational costs.
+- Risk of cross-tenant information exposure through incorrect access configuration.
+- Retrieval quality may deteriorate when documents are outdated, incomplete, or incorrectly indexed.
+
+**Required Mitigations:**
+- Enforce tenant-level authorization and verify isolation through automated security tests.
+- Restrict index access using IAM, network controls, and least-privilege permissions.
+- Implement document lifecycle management, including versioning and expiration rules.
+- Evaluate retrieval relevance, citation accuracy, and prompt injection resistance before production release.
+- Monitor retrieval failures, unauthorized access attempts, and indexing errors.
+
+### Validation and Review
+
+**Owners:** Engineering Lead and Security & Compliance Lead.
+
+Production approval requires successful tenant-isolation testing, retrieval-quality evaluation, access-control verification, and review of data residency requirements.
+
+The ML/AI Lead validates retrieval quality, while the MLOps Engineer validates monitoring and operational readiness.
+
+Reassess the storage strategy if retrieval quality, operational cost, scalability, or compliance requirements change materially.
