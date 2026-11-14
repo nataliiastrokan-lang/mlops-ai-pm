@@ -1,7 +1,7 @@
 
 # PayGuard AI — Threat Model
 
-**Document Status:** Draft  
+**Document Status:** Proposed  
 **Document Owner:** Emma Wilson, Security & Compliance Lead  
 **Contributors:** Nataliia Strokan (Senior AI Product Manager), Daniel Carter (Engineering Lead), Marcus Lee (ML/AI Lead), Alex Morgan (MLOps Engineer)  
 **Version:** 1.0
