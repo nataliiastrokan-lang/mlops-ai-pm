@@ -155,3 +155,100 @@ Recommended financial controls include:
 - Quarterly TCO forecasts and variance analysis.
 
 Any material increase in recurring costs requires review of its expected business value before additional spending is approved.
+
+
+## 4. Unit Economics
+
+### 4.1 Purpose and Calculation Basis
+
+Unit economics measure the cost efficiency of PayGuard AI at the expected operating volume.
+
+The model uses the following assumptions:
+
+| Parameter | Monthly Value |
+|---|---:|
+| Payment events processed | 35,000,000 |
+| Payment transactions scored by ML | 10,000,000 |
+| Manual investigations | 100,000 |
+| Estimated LLM-assisted investigations | 70,000 |
+| AWS compute and EKS cost | $18,000 |
+| Commercial LLM API cost | $12,000 |
+| Total recurring platform cost | $100,000 |
+
+For planning purposes, each payment transaction is assumed to receive one primary ML risk score.
+
+The 70,000 LLM-assisted investigations represent an illustrative target-state usage assumption, not measured adoption.
+
+### 4.2 ML Inference Unit Economics
+
+The direct ML infrastructure cost is approximated using the monthly AWS compute and EKS allocation.
+
+**Cost per 1,000 payment events:**
+
+$18,000 / 35,000,000 × 1,000 = **$0.514**
+
+**Direct compute cost per ML-scored transaction:**
+
+$18,000 / 10,000,000 = **$0.0018**
+
+This is equivalent to **$1.80 per 1,000 scored transactions**.
+
+These figures represent allocated compute costs only. They do not include storage, networking, personnel, monitoring, or implementation expenditure.
+
+### 4.3 LLM Copilot Unit Economics
+
+The LLM Copilot uses a commercial API, with costs driven by request frequency, input/output tokens, and provider pricing.
+
+**Assumed monthly LLM API expenditure:** $12,000
+
+**Assumed LLM-assisted investigations:** 70,000
+
+**LLM API cost per assisted investigation:**
+
+$12,000 / 70,000 = **$0.1714**
+
+The estimated direct LLM API cost is approximately **$0.17 per assisted investigation**.
+
+This assumes that the monthly API budget covers all model calls associated with those investigations, including retries and supporting requests.
+
+Actual unit cost must be validated through token-level usage monitoring and provider billing data.
+
+### 4.4 Fully Allocated Platform Unit Economics
+
+The full recurring operating cost includes infrastructure, LLM usage, tooling, dedicated personnel, security, and operational support.
+
+**Recurring platform cost per 1,000 payment events:**
+
+$100,000 / 35,000,000 × 1,000 = **$2.86**
+
+**Recurring platform cost per ML-scored transaction:**
+
+$100,000 / 10,000,000 = **$0.01**
+
+These are alternative allocations of the same total monthly platform cost and must not be added together.
+
+### 4.5 Unit Economics Summary
+
+| Metric | Estimated Unit Cost |
+|---|---:|
+| Direct AWS compute per 1,000 payment events | $0.51 |
+| Direct AWS compute per ML-scored transaction | $0.0018 |
+| Direct LLM API per assisted investigation | $0.17 |
+| Fully allocated recurring cost per 1,000 payment events | $2.86 |
+| Fully allocated recurring cost per scored transaction | $0.01 |
+
+### 4.6 Interpretation and Optimization Opportunities
+
+At the assumed operating volume, ML inference has a relatively low direct compute cost per transaction.
+
+LLM usage introduces variable expenditure that depends on investigation volume, token consumption, and provider pricing.
+
+Potential optimization opportunities include:
+
+- Batching or caching appropriate non-sensitive retrieval operations.
+- Limiting unnecessary LLM calls and oversized context windows.
+- Monitoring token usage and cost per investigation.
+- Right-sizing EKS workloads and reducing idle infrastructure.
+- Tracking the relationship between Copilot adoption, investigation handling time, and operational savings.
+
+Unit economics should be reassessed monthly after launch using actual infrastructure utilization, API billing, and investigation activity.
