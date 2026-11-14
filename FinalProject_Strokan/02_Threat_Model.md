@@ -196,3 +196,122 @@ Each identified threat must include:
 All financial impacts in the threat register are planning estimates for the hypothetical PayGuard AI business, not historical incident losses.
 
 The Security & Compliance Lead owns the consolidated risk register. Technical owners are responsible for implementing and validating their assigned mitigations.
+
+
+## 6. Risk Scoring Methodology
+
+PayGuard AI uses a 3×3 risk assessment matrix to evaluate security, operational, compliance, and AI-specific threats.
+
+Each threat receives an **Impact** score and a **Likelihood** score on a scale of 1–3.
+
+**Risk Score = Impact × Likelihood**
+
+### 6.1 Impact Assessment
+
+| Score | Level | Definition |
+|---|---|---|
+| 1 | Low | Limited operational disruption, minor quality degradation, or negligible financial impact |
+| 2 | Medium | Measurable service degradation, increased manual review costs, or a contained security incident |
+| 3 | High | Significant financial loss, sensitive data exposure, regulatory consequences, or disruption of critical payment risk operations |
+
+### 6.2 Likelihood Assessment
+
+| Score | Level | Definition |
+|---|---|---|
+| 1 | Unlikely | Requires uncommon conditions or multiple control failures |
+| 2 | Possible | Credible scenario that could occur under normal operating conditions |
+| 3 | Likely | High exposure or a recurring failure pattern without additional controls |
+
+### 6.3 Risk Priority Matrix
+
+| Impact \ Likelihood | 1 — Unlikely | 2 — Possible | 3 — Likely |
+|---|---|---|---|
+| **3 — High** | P2 (3) | P1 (6) | P1 (9) |
+| **2 — Medium** | P3 (2) | P2 (4) | P1 (6) |
+| **1 — Low** | P3 (1) | P3 (2) | P3 (3) |
+
+### 6.4 Priority and Escalation Rules
+
+| Priority | Risk Scores | Required Response |
+|---|---|---|
+| P1 — Critical | 6–9 | Immediate mitigation planning, accountable owner, and Security & Compliance escalation; unresolved P1 risks block production approval |
+| P2 — High | 3–4, where Impact = 3 or score = 4 | Documented mitigation plan, assigned owner, and validation before production or formal risk acceptance |
+| P3 — Moderate/Low | 1–3, excluding Impact = 3 | Track through standard risk management and periodic review |
+
+Risk priorities represent the **initial risk level before mitigation**. Residual risks must be reassessed after controls are implemented and validated.
+
+### 6.5 Risk Register Requirements
+
+Each identified threat must include:
+
+- Threat ID and category.
+- Threat scenario and affected asset.
+- Impact and likelihood scores.
+- Risk priority.
+- Potential business or compliance impact.
+- Proposed mitigation and detection controls.
+- Accountable owner.
+- Mitigation status.
+
+All financial impacts in the threat register are planning estimates for the hypothetical PayGuard AI business, not historical incident losses.
+
+The Security & Compliance Lead owns the consolidated risk register. Technical owners are responsible for implementing and validating their assigned mitigations.
+
+
+## 7. Threat Register
+
+The register identifies initial risks before mitigation. Priorities are calculated using the Impact × Likelihood methodology defined in Section 6.
+
+**Status definitions:**
+- **Planned:** Mitigation identified but not yet implemented.
+- **In Progress:** Controls are being implemented or tested.
+- **Pending Validation:** Controls implemented but effectiveness not yet confirmed.
+
+### 7.1 Security, Data, and Infrastructure Threats
+
+| ID | Threat Scenario / Affected Asset | Impact | Likelihood | Priority | Potential Business Impact | Mitigation and Detection Controls | Owner | Status |
+|---|---|---|---|---|---|---|---|---|
+| T01 | Cross-tenant access through incorrectly configured APIs | 3 | 2 | **P1 (6)** | Exposure of customer payment data; incident response and contractual costs potentially exceeding $250K | Server-side tenant authorization, automated isolation tests, access anomaly alerts | Emma Wilson | Planned |
+| T02 | Compromised API credentials enabling unauthorized requests | 3 | 2 | **P1 (6)** | Unauthorized access or service misuse; estimated $50K–$200K response and recovery exposure | Credential rotation, least privilege, rate limiting, suspicious activity detection | Daniel Carter | Planned |
+| T03 | Manipulated training data degrading ML risk predictions | 3 | 2 | **P1 (6)** | Increased fraud losses or false positives; potential $100K+ operational impact | Dataset provenance, integrity checks, anomaly detection, controlled training access | Marcus Lee | Planned |
+| T04 | Unauthorized model artifact replacement in MLflow | 3 | 1 | **P2 (3)** | Incorrect production scoring; emergency rollback and investigation costs of $25K–$100K | Registry RBAC, artifact integrity verification, release approval gates | Alex Morgan | Planned |
+| T05 | CI/CD compromise causing unauthorized production deployment | 3 | 2 | **P1 (6)** | Production disruption or compromised scoring; potential $100K–$300K impact | Protected branches, short-lived credentials, signed artifacts, deployment audit logs | Alex Morgan | Planned |
+| T06 | Excessive IAM permissions exposing production resources | 3 | 1 | **P2 (3)** | Sensitive data exposure or infrastructure compromise; potential $100K+ impact | Least-privilege IAM, periodic access reviews, privilege escalation alerts | Emma Wilson | Planned |
+| T07 | ML inference service outage or capacity exhaustion | 3 | 2 | **P1 (6)** | Delayed risk decisions and customer disruption; estimated $20K–$80K per major incident | Autoscaling, load testing, availability alerts, tested recovery procedures | Daniel Carter | Planned |
+| T08 | Sensitive payment information exposed through application logs | 3 | 1 | **P2 (3)** | Privacy incident, remediation costs, and regulatory exposure | Log redaction, retention controls, restricted access, automated sensitive-data scans | Emma Wilson | Planned |
+| T09 | Model drift causing increased false positives | 2 | 3 | **P1 (6)** | Manual review costs remain near the $250K monthly baseline or increase further | Drift monitoring, FPR alerts, shadow evaluation, rollback and retraining triggers | Marcus Lee | Planned |
+| T10 | Backup or recovery failure affecting MLflow and model artifacts | 2 | 2 | **P2 (4)** | Extended recovery time, release delays, and reconstruction costs of $20K–$60K | Automated backups, restoration tests, artifact replication, recovery objectives | Alex Morgan | Planned |
+| T11 | Monitoring gaps delaying detection of production incidents | 2 | 2 | **P2 (4)** | Longer outages, delayed escalation, and increased operational losses | Alert coverage reviews, synthetic checks, dashboard validation, incident exercises | Alex Morgan | Planned |
+
+### 7.2 LLM/RAG-Specific Threats
+
+| ID | Threat Scenario / Affected Asset | Impact | Likelihood | Priority | Potential Business Impact | Mitigation and Detection Controls | Owner | Status |
+|---|---|---|---|---|---|---|---|---|
+| T12 | Prompt injection embedded in retrieved policy documents | 3 | 2 | **P1 (6)** | Manipulated analyst recommendations or unauthorized disclosure; potential $50K–$200K impact | Treat retrieved content as untrusted, injection testing, tool restrictions, output validation | Marcus Lee | Planned |
+| T13 | Cross-tenant document retrieval through incorrect RAG filtering | 3 | 2 | **P1 (6)** | Confidential customer information leakage; potential $250K+ response and contractual exposure | Backend tenant authorization, isolation tests, retrieval audit logs, access alerts | Emma Wilson | Planned |
+| T14 | LLM hallucination producing incorrect compliance guidance | 3 | 2 | **P1 (6)** | Incorrect investigations, regulatory near-misses, and remediation costs | Grounded responses, source citations, evaluation datasets, human approval | Marcus Lee | Planned |
+| T15 | Sensitive data transmitted unnecessarily to external LLM provider | 3 | 1 | **P2 (3)** | Privacy or contractual violations; potentially significant regulatory exposure | PII filtering, context minimization, vendor assessment, request logging controls | Emma Wilson | Planned |
+| T16 | Outdated or poisoned RAG documents influencing responses | 2 | 3 | **P1 (6)** | Repeated incorrect policy guidance, rework, and compliance investigation costs | Document provenance, validity metadata, approval workflow, index freshness alerts | Rachel Adams | Planned |
+| T17 | LLM API outage or severe latency degradation | 2 | 2 | **P2 (4)** | Reduced analyst productivity and increased manual handling cost | Provider health monitoring, timeouts, circuit breakers, manual workflow fallback | Daniel Carter | Planned |
+| T18 | Excessive LLM token consumption through misuse or uncontrolled context | 2 | 2 | **P2 (4)** | Unexpected API expenditure; illustrative additional cost of $10K–$30K per month | Token budgets, request quotas, usage alerts, context-size limits | Alex Morgan | Planned |
+
+### 7.3 Initial Risk Summary
+
+| Category | Number of Threats |
+|---|---:|
+| Security, data, and infrastructure | 11 |
+| LLM/RAG-specific | 7 |
+| **Total** | **18** |
+
+| Priority | Number of Threats |
+|---|---:|
+| P1 — Critical | 9 |
+| P2 — High | 9 |
+| P3 — Moderate/Low | 0 |
+| **Total** | **18** |
+
+The initial assessment identifies nine P1 risks requiring mitigation and validation before production approval.
+
+These are planning-level risk estimates, not observed incidents. Financial exposure ranges describe illustrative consequences of individual threats and must not be summed as expected annual losses.
+
+The absence of P3 risks reflects the register's focus on material threats to production readiness rather than an absence of lower-priority operational risks.
