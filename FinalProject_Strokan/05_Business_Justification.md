@@ -389,9 +389,9 @@ The $100,000 monthly operating cost is divided into fixed and variable component
 | Engineering, ML, and MLOps personnel | $45,000 | Fixed within modeled capacity |
 | Security, compliance, and operational support | $10,000 | Fixed within modeled capacity |
 
-**Total fixed monthly cost: $62,600**
+**Total fixed monthly cost: $66,200**
 
-**Total variable monthly cost at base volume: $37,400**
+**Total variable monthly cost at base volume: $33,800**
 
 The model assumes existing staffing and infrastructure can support the modeled range without major redesign. Capacity limits would require additional investment.
 
@@ -403,10 +403,10 @@ The model assumes existing staffing and infrastructure can support the modeled r
 | Scored transactions | 5M | 10M | 20M |
 | LLM-assisted investigations | 35,000 | 70,000 | 140,000 |
 | Gross operational savings | $55,000 | $110,000 | $220,000 |
-| Fixed operating costs | $62,600 | $62,600 | $62,600 |
-| Variable operating costs | $18,700 | $37,400 | $74,800 |
-| **Total monthly operating costs** | **$81,300** | **$100,000** | **$137,400** |
-| **Monthly operating contribution** | **-$26,300** | **+$10,000** | **+$82,600** |
+| Fixed operating costs | $66,200 | $66,200 | $66,200 |
+| Variable operating costs | $16,900 | $33,800 | $67,600 |
+| **Total monthly operating costs** | **$83,100** | **$100,000** | **$133,800** |
+| **Monthly operating contribution** | **−$28,100** | **+$10,000** | **+$86,200** |
 
 The high-volume scenario remains below the assumed $140,000 monthly MLOps budget ceiling, but with limited headroom.
 
@@ -419,11 +419,11 @@ One-time implementation expenditure remains $220,000.
 | Metric | Low (0.5×) | Base (1×) | High (2×) |
 |---|---:|---:|---:|
 | Three-year gross benefits | $1,815,000 | $3,630,000 | $7,260,000 |
-| Three-year recurring costs | $2,926,800 | $3,600,000 | $4,946,400 |
+| Three-year recurring costs | $2,991,600 | $3,600,000 | $4,816,800 |
 | One-time implementation | $220,000 | $220,000 | $220,000 |
-| **Three-year TCO** | **$3,146,800** | **$3,820,000** | **$5,166,400** |
-| **Three-year net benefit** | **-$1,331,800** | **-$190,000** | **+$2,093,600** |
-| **Three-year ROI** | **-42.3%** | **-5.0%** | **+40.5%** |
+| **Three-year TCO** | **$3,211,600** | **$3,820,000** | **$5,036,800** |
+| **Three-year net benefit** | **−$1,396,600** | **−$190,000** | **+$2,223,200** |
+| **Three-year ROI** | **−43.5%** | **−5.0%** | **+44.1%** |
 
 ### 6.5 Interpretation
 
