@@ -1,7 +1,7 @@
 
 # PayGuard AI — Integration Note
 
-**Document Status:** Draft  
+**Document Status:** Proposed  
 **Prepared by:** Nataliia Strokan, Senior AI Product Manager  
 **Version:** 1.0
 
