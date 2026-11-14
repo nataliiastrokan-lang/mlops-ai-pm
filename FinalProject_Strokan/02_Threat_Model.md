@@ -305,8 +305,8 @@ The register identifies initial risks before mitigation. Priorities are calculat
 
 | Priority | Number of Threats |
 |---|---:|
-| P1 — Critical | 9 |
-| P2 — High | 9 |
+| P1 — Critical | 10 |
+| P2 — High | 8 |
 | P3 — Moderate/Low | 0 |
 | **Total** | **18** |
 
