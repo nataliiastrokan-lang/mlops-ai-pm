@@ -1,5 +1,5 @@
 # Architectural Decision Records — PayGuard AI
-Status: Draft
+Status: Proposed
 
 
 ## High-Level Architecture & Technology Stack
