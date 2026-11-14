@@ -321,7 +321,7 @@ The absence of P3 risks reflects the register's focus on material threats to pro
 
 ### 8.1 Risk Treatment Plan
 
-All nine identified P1 risks require documented mitigation and validation before production approval.
+All ten identified P1 risks require documented mitigation and validation before production approval.
 
 Risk treatment priorities are:
 
