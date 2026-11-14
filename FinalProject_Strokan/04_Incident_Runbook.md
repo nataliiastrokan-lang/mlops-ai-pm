@@ -1,7 +1,7 @@
 
 # PayGuard AI — Incident Response Runbook
 
-**Document Status:** Draft  
+**Document Status:** Proposed 
 **Document Owner:** Alex Morgan, MLOps Engineer  
 **Business Owner:** Nataliia Strokan, Senior AI Product Manager  
 **Version:** 1.0
