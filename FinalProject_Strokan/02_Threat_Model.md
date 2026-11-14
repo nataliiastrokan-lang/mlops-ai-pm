@@ -315,3 +315,65 @@ The initial assessment identifies nine P1 risks requiring mitigation and validat
 These are planning-level risk estimates, not observed incidents. Financial exposure ranges describe illustrative consequences of individual threats and must not be summed as expected annual losses.
 
 The absence of P3 risks reflects the register's focus on material threats to production readiness rather than an absence of lower-priority operational risks.
+
+
+## 8. Risk Treatment, Residual Risk, and Governance
+
+### 8.1 Risk Treatment Plan
+
+All nine identified P1 risks require documented mitigation and validation before production approval.
+
+Risk treatment priorities are:
+
+1. **Data protection and tenant isolation:** Prevent unauthorized access to payment information and customer-specific RAG documents (T01, T02, T13).
+2. **ML integrity and reliability:** Protect training data, deployment pipelines, inference availability, and model quality (T03, T05, T07, T09).
+3. **LLM/RAG safety:** Prevent prompt injection, unsupported compliance guidance, and use of outdated documents (T12, T14, T16).
+4. **Operational resilience:** Address P2 risks through access controls, monitoring, recovery procedures, and cost guardrails.
+
+Each mitigation must have an accountable owner, implementation evidence, and validation results.
+
+### 8.2 Residual Risk Assessment
+
+Residual risk is evaluated after mitigation controls have been implemented and tested.
+
+The responsible technical owner proposes updated Impact and Likelihood scores. Security & Compliance reviews the evidence and confirms the residual priority.
+
+Residual risks must not be marked as accepted solely because controls have been documented.
+
+**Risk acceptance rules:**
+
+- **P1:** Unresolved P1 risks block production release.
+- **P2:** Require validated mitigation or documented acceptance by Security & Compliance and the CPO.
+- **P3:** May be accepted by the responsible owner with periodic review.
+
+Any exception involving customer data exposure, regulatory obligations, or unauthorized AI decision-making requires explicit Security & Compliance approval and cannot override applicable legal requirements.
+
+### 8.3 Production Go/No-Go Criteria
+
+Production approval requires:
+
+- All P1 mitigation controls implemented and validated.
+- Successful cross-tenant isolation and access-control testing.
+- Approved ML model evaluation and rollback readiness.
+- Successful LLM/RAG security and quality evaluations.
+- Confirmed monitoring, alerting, and incident response ownership.
+- Documented residual risks and required approvals.
+
+The **Senior AI Product Manager** coordinates the Go/No-Go review.
+
+The **Engineering Lead** confirms technical readiness, the **ML/AI Lead** confirms model quality, and the **Security & Compliance Lead** confirms security and compliance readiness.
+
+The **CPO** provides final business release authorization, subject to mandatory security and compliance gates.
+
+### 8.4 Ongoing Governance
+
+The threat model is reviewed:
+
+- Before major production releases.
+- After significant security, model-quality, or LLM incidents.
+- When introducing new external providers or sensitive data flows.
+- At least quarterly during normal operations.
+
+Changes to risk scores, mitigation status, ownership, or acceptance decisions must be recorded and traceable.
+
+Threat scenarios will inform production release checklists, monitoring requirements, incident response procedures, and stakeholder reporting.
