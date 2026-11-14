@@ -1,7 +1,7 @@
 
 # PayGuard AI — Business Justification
 
-**Document Status:** Draft  
+**Document Status:** Proposed 
 **Document Owner:** Nataliia Strokan, Senior AI Product Manager  
 **Business Sponsor:** Olivia Bennett, CPO  
 **Planning Horizon:** 3 years  
