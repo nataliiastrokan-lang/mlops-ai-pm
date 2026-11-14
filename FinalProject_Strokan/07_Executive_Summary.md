@@ -1,7 +1,7 @@
 
 # PayGuard AI — Executive Summary
 
-**Document Status:** Draft  
+**Document Status:** Proposed  
 **Prepared by:** Nataliia Strokan, Senior AI Product Manager  
 **Decision Sponsor:** Olivia Bennett, CPO  
 **Decision Requested:** Conditional approval for a controlled pilot
