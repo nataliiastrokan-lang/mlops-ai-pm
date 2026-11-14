@@ -93,3 +93,24 @@ All controls are initially marked **Not Verified** because this is a hypothetica
 | RC-18 | RAG retrieval accuracy and freshness | Retrieval relevance meets approved evaluation thresholds; expired policies are excluded and source versions are traceable | Marcus Lee | Not Verified |
 | RC-19 | Sensitive data and tenant protection | Tests confirm tenant isolation, context minimization, and PII filtering before requests to the external LLM provider | Emma Wilson | Not Verified |
 | RC-20 | Human oversight and safe fallback | Final payment risk decisions require authorized human approval; unsupported LLM outputs can be rejected and the analyst workflow remains usable without the Copilot | Rachel Adams | Not Verified |
+
+
+### 3.5 Deployment and Rollback Readiness
+
+| ID | Readiness Check | Acceptance Criteria | Owner | Status |
+|---|---|---|---|---|
+| RC-21 | CI/CD pipeline validation | GitLab CI successfully executes automated tests, security scans, artifact verification, and deployment validation | Alex Morgan | Not Verified |
+| RC-22 | GitOps configuration | Argo CD production application is synchronized with approved Git configuration; unauthorized drift is detected and escalated | Alex Morgan | Not Verified |
+| RC-23 | Canary deployment validation | Staging tests verify 5% → 25% → 50% → 100% traffic progression, health checks, and promotion gates | Alex Morgan | Not Verified |
+| RC-24 | Automated rollback triggers | Technical rollback triggers are tested for excessive error rates, latency violations, and service health failures | Alex Morgan | Not Verified |
+| RC-25 | Model rollback and recovery | Previous approved MLflow model version can be restored; rollback execution and post-rollback validation are demonstrated | Marcus Lee | Not Verified |
+
+### 3.6 Monitoring and Observability Readiness
+
+| ID | Readiness Check | Acceptance Criteria | Owner | Status |
+|---|---|---|---|---|
+| RC-26 | Infrastructure and API monitoring | Prometheus/Grafana dashboards show availability, request volume, p95/p99 latency, error rates, CPU, memory, and pod restarts | Alex Morgan | Not Verified |
+| RC-27 | ML quality monitoring | Dashboards track FPR, fraud detection effectiveness when labels become available, data drift, and prediction distribution changes | Marcus Lee | Not Verified |
+| RC-28 | LLM/RAG monitoring | Monitoring captures LLM latency, provider errors, token consumption, retrieval failures, document freshness, and evaluated response quality | Marcus Lee | Not Verified |
+| RC-29 | Alerting and escalation | Critical alerts have documented thresholds, responsible responders, escalation paths, and successful notification tests | Alex Morgan | Not Verified |
+| RC-30 | Logging and auditability | Loki and audit records support investigation of model versions, deployments, retrieval activity, and access decisions without exposing sensitive information | Emma Wilson | Not Verified |
