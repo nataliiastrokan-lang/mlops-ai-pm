@@ -114,3 +114,87 @@ All controls are initially marked **Not Verified** because this is a hypothetica
 | RC-28 | LLM/RAG monitoring | Monitoring captures LLM latency, provider errors, token consumption, retrieval failures, document freshness, and evaluated response quality | Marcus Lee | Not Verified |
 | RC-29 | Alerting and escalation | Critical alerts have documented thresholds, responsible responders, escalation paths, and successful notification tests | Alex Morgan | Not Verified |
 | RC-30 | Logging and auditability | Loki and audit records support investigation of model versions, deployments, retrieval activity, and access decisions without exposing sensitive information | Emma Wilson | Not Verified |
+
+
+### 3.7 Incident Response and Operational Readiness
+
+| ID | Readiness Check | Acceptance Criteria | Owner | Status |
+|---|---|---|---|---|
+| RC-31 | Incident response runbooks | Runbooks cover ML quality degradation, LLM/RAG security or quality incidents, and deployment/infrastructure failures | Alex Morgan | Not Verified |
+| RC-32 | Incident detection and triage | Severity classification, detection signals, escalation rules, and first-response responsibilities are documented and tested | Emma Wilson | Not Verified |
+| RC-33 | Incident response exercises | Tabletop exercises validate response coordination, rollback decisions, communications, and recovery procedures for all three incident scenarios | James Miller | Not Verified |
+| RC-34 | External dependency fallback | Simulated LLM provider failure confirms that analysts can continue investigations without the Copilot | Rachel Adams | Not Verified |
+| RC-35 | Support and operational handover | On-call coverage, support ownership, operational documentation, and escalation contacts are confirmed | Rachel Adams | Not Verified |
+
+### 3.8 Business and Stakeholder Readiness
+
+| ID | Readiness Check | Acceptance Criteria | Owner | Status |
+|---|---|---|---|---|
+| RC-36 | Business KPI baseline | Baseline FPR of 8.1%, monthly manual reviews of 100,000, and monthly review cost of $250,000 are documented with agreed measurement definitions | Nataliia Strokan | Not Verified |
+| RC-37 | Financial and cost controls | AWS infrastructure, LLM API consumption, monitoring costs, and approved MLOps budget assumptions are reviewed; cost alerts and spending limits are configured | Nataliia Strokan | Not Verified |
+| RC-38 | Analyst training and UAT | Customer Operations completes user acceptance testing and confirms that analysts understand Copilot limitations, citations, and human approval requirements | Rachel Adams | Not Verified |
+| RC-39 | Customer and compliance communications | Customer-facing release communications, support procedures, and applicable compliance notifications are reviewed and approved | Emma Wilson | Not Verified |
+| RC-40 | Final stakeholder approval | Engineering, ML/AI, MLOps, Security & Compliance, QA, and Customer Operations provide readiness sign-off; CPO records final release authorization | Olivia Bennett | Not Verified |
+
+## 4. Go/No-Go Decision Record
+
+**Release:** PayGuard AI — Initial Production Launch  
+**Assessment Date:** TBD  
+**Decision:** Pending
+
+### 4.1 Readiness Summary
+
+| Category | Total Checks | Passed | Failed | Not Verified |
+|---|---:|---:|---:|---:|
+| Infrastructure | 5 | 0 | 0 | 5 |
+| Security and Compliance | 5 | 0 | 0 | 5 |
+| ML Model Quality | 5 | 0 | 0 | 5 |
+| LLM/RAG Safety and Quality | 5 | 0 | 0 | 5 |
+| Deployment and Rollback | 5 | 0 | 0 | 5 |
+| Monitoring and Observability | 5 | 0 | 0 | 5 |
+| Incident Response and Operations | 5 | 0 | 0 | 5 |
+| Business and Stakeholder Readiness | 5 | 0 | 0 | 5 |
+| **Total** | **40** | **0** | **0** | **40** |
+
+### 4.2 Outstanding Release Blockers
+
+At the time of drafting, no production validation evidence has been provided.
+
+All 40 checks remain Not Verified. The 10 P1 threats identified in the Threat Model also require validated mitigation evidence.
+
+These are outstanding verification requirements, not confirmed test failures.
+
+### 4.3 Current Release Recommendation
+
+**Recommendation: No-Go — Pending Validation**
+
+Production release cannot be authorized until mandatory controls have been verified, critical risks have been mitigated, and required stakeholder approvals have been recorded.
+
+This recommendation reflects the hypothetical project's current documentation status rather than a confirmed production incident or technical failure.
+
+### 4.4 Approval Record
+
+| Role | Approver | Approval Status |
+|---|---|---|
+| Senior AI Product Manager | Nataliia Strokan | Pending |
+| Engineering Lead | Daniel Carter | Pending |
+| ML/AI Lead | Marcus Lee | Pending |
+| MLOps Engineer | Alex Morgan | Pending |
+| Security & Compliance Lead | Emma Wilson | Pending |
+| QA / AI Evaluation Engineer | James Miller | Pending |
+| Customer Operations Lead | Rachel Adams | Pending |
+| CPO | Olivia Bennett | Pending |
+
+**Final Decision:** Pending  
+**Decision Date:** TBD  
+**Conditions / Exceptions:** None approved
+
+## 5. Checklist Maintenance
+
+The checklist must be reviewed before every major production release.
+
+Each verification result must reference supporting evidence, such as test reports, monitoring dashboards, security assessments, model evaluation results, or deployment records.
+
+Failed checks require documented remediation and reassessment. Exceptions must follow the approval rules defined in Section 2.3.
+
+The Senior AI Product Manager maintains the consolidated readiness status and coordinates the final release decision.
