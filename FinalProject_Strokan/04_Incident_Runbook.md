@@ -169,3 +169,100 @@ Within two business days of stabilization, conduct a post-incident review coveri
 - Corrective actions, owners, and deadlines.
 
 Preventive improvements may include stronger data validation, more representative evaluation datasets, improved drift thresholds, and revised Canary promotion criteria.
+
+
+## 6. Scenario 2 — LLM/RAG Security or Quality Incident
+
+**Related Threats:** T12 (Prompt Injection), T13 (Cross-Tenant Retrieval), T14 (LLM Hallucination), T15 (Sensitive Data Exposure), T16 (Outdated RAG Documents)  
+**Default Severity:** SEV-2; escalate immediately to SEV-1 for suspected sensitive-data exposure, cross-tenant leakage, or material compliance impact.  
+**Incident Owner:** Emma Wilson, Security & Compliance Lead  
+**Technical Support:** Marcus Lee, ML/AI Lead; Daniel Carter, Engineering Lead  
+**Expected Frequency:** Occasional quality incidents; security events treated as exceptional but high-impact.  
+**Target MTTR:** ≤4 hours for containment; ≤60 minutes for containment of SEV-1 incidents.
+
+### 6.1 Detection and Triggers
+
+Potential signals include:
+
+- Copilot responses containing information from another tenant.
+- Prompt injection instructions detected in retrieved documents or user inputs.
+- Unsupported compliance recommendations or fabricated source citations.
+- Responses based on expired or unapproved policy documents.
+- Sensitive payment information transmitted to the external LLM provider without authorization.
+- Alerts from retrieval audit logs, security monitoring, automated evaluations, or analyst reports.
+
+### 6.2 First 15 Minutes
+
+1. Acknowledge the incident and assign severity.
+2. Notify Security & Compliance immediately if data exposure or unauthorized access is suspected.
+3. Identify affected tenants, users, documents, prompts, and Copilot versions.
+4. Disable the affected retrieval source, prompt configuration, or Copilot functionality as necessary.
+5. Preserve relevant audit logs, document versions, model identifiers, and request metadata using approved secure procedures.
+6. Prevent further exposure by restricting affected access paths and suspending unsafe integrations.
+7. Activate the analyst workflow without Copilot assistance if safe operation cannot be confirmed.
+8. Notify the Senior AI Product Manager and CPO for SEV-1 incidents.
+
+### 6.3 Diagnosis
+
+The response team investigates:
+
+- Whether the incident originated from user input, retrieved documents, access-control failure, or model behavior.
+- Whether tenant authorization was enforced before retrieval.
+- Whether prompt injection bypassed application-level restrictions.
+- Whether retrieved documents were current, approved, and correctly indexed.
+- Whether sensitive data was included in requests to the external LLM provider.
+- Whether incorrect guidance influenced actual analyst decisions.
+
+Security & Compliance determines whether the incident constitutes a reportable privacy or compliance event.
+
+### 6.4 Containment and Mitigation
+
+- Disable affected RAG indexes, document sources, or Copilot features.
+- Revoke compromised credentials and restrict unauthorized access.
+- Remove or quarantine malicious, outdated, or unapproved documents.
+- Restore the last validated prompt and retrieval configuration.
+- Apply additional authorization checks and context filtering.
+- Require manual review of potentially affected analyst recommendations.
+- Coordinate with the external LLM provider if provider-side investigation or containment is necessary.
+
+Do not restore affected functionality until the underlying security or quality failure has been addressed and validated.
+
+### 6.5 Recovery Validation
+
+Recovery requires:
+
+- Successful tenant-isolation and access-control tests.
+- Passing prompt injection and sensitive-data protection evaluations.
+- Verified document provenance, freshness, and retrieval accuracy.
+- Acceptable grounded-response quality and citation correctness.
+- Confirmation that analysts can safely use the restored Copilot.
+- Security & Compliance approval for incidents involving privacy or compliance concerns.
+
+The ML/AI Lead validates AI quality. Security & Compliance approves security recovery, and the Incident Commander confirms operational stability.
+
+### 6.6 Communication and Escalation
+
+The Senior AI Product Manager coordinates internal business communications, including:
+
+- Affected customer segments and investigation workflows.
+- Potential operational and compliance impact.
+- Containment status and availability of manual fallback.
+- Expected restoration timeline and follow-up actions.
+
+Customer Operations coordinates customer communications.
+
+Security & Compliance determines regulatory and contractual notification requirements, including applicable deadlines, based on verified incident facts.
+
+No unverified claims about data exposure or regulatory impact should be communicated as confirmed findings.
+
+### 6.7 Post-Incident Review and Prevention
+
+Within two business days of stabilization, initiate a post-incident review covering:
+
+- Root cause and attack or failure path.
+- Affected tenants, documents, and analyst decisions.
+- Effectiveness of authorization, filtering, and evaluation controls.
+- Detection and containment timelines.
+- Required changes to prompts, retrieval configuration, security tests, or document governance.
+
+Assign corrective actions with owners and deadlines. Repeat relevant adversarial and tenant-isolation tests before the next production release.
