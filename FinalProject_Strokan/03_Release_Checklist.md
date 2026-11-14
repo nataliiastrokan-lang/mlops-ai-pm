@@ -72,3 +72,24 @@ All controls are initially marked **Not Verified** because this is a hypothetica
 | RC-08 | Data protection | Encryption, retention, log redaction, and sensitive-data filtering controls pass security validation | Emma Wilson | Not Verified |
 | RC-09 | External LLM provider assessment | Security, privacy, contractual data processing, and applicable EU/US residency requirements are reviewed and approved | Emma Wilson | Not Verified |
 | RC-10 | Critical threat mitigation | All 10 P1 threats in the Threat Model have implemented and validated controls; no unresolved P1 risk remains | Emma Wilson | Not Verified |
+
+
+### 3.3 ML Model Quality and Validation
+
+| ID | Readiness Check | Acceptance Criteria | Owner | Status |
+|---|---|---|---|---|
+| RC-11 | Model version and traceability | Production candidate is registered in MLflow with a unique version, training run ID, parameters, metrics, and approved artifacts | Marcus Lee | Not Verified |
+| RC-12 | False positive rate validation | Offline and staging evaluations demonstrate progress toward the business target of FPR ≤5.0% within six months; launch-specific acceptance threshold is documented and approved | Marcus Lee | Not Verified |
+| RC-13 | Fraud detection effectiveness | Candidate model meets the approved fraud recall and precision guardrails; no unacceptable degradation compared with the production baseline | Marcus Lee | Not Verified |
+| RC-14 | Model robustness and drift | Data quality, feature consistency, representative test coverage, and drift detection are validated; monitoring thresholds are configured | James Miller | Not Verified |
+| RC-15 | ML inference performance | Staging load tests meet approved p95/p99 latency, error-rate, and throughput SLOs at expected and peak traffic levels | Daniel Carter | Not Verified |
+
+### 3.4 LLM/RAG Safety and Quality
+
+| ID | Readiness Check | Acceptance Criteria | Owner | Status |
+|---|---|---|---|---|
+| RC-16 | Prompt injection resistance | Adversarial tests cover direct and retrieved-document prompt injection; no critical unauthorized actions or data disclosures occur | James Miller | Not Verified |
+| RC-17 | Grounded response quality | Evaluation confirms responses are supported by retrieved evidence; hallucination and unsupported-claim rates meet approved thresholds | Marcus Lee | Not Verified |
+| RC-18 | RAG retrieval accuracy and freshness | Retrieval relevance meets approved evaluation thresholds; expired policies are excluded and source versions are traceable | Marcus Lee | Not Verified |
+| RC-19 | Sensitive data and tenant protection | Tests confirm tenant isolation, context minimization, and PII filtering before requests to the external LLM provider | Emma Wilson | Not Verified |
+| RC-20 | Human oversight and safe fallback | Final payment risk decisions require authorized human approval; unsupported LLM outputs can be rejected and the analyst workflow remains usable without the Copilot | Rachel Adams | Not Verified |
